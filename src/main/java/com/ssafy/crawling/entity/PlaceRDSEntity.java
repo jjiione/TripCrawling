@@ -1,6 +1,4 @@
-package com.ssafy.crawling.Entity;
-
-import com.ssafy.crawling.model.PlaceDto;
+package com.ssafy.crawling.entity;
 
 import javax.persistence.*;
 

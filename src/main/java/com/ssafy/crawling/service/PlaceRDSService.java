@@ -1,9 +1,8 @@
 package com.ssafy.crawling.service;
 
-import com.ssafy.crawling.Entity.PlaceRDSEntity;
-import com.ssafy.crawling.model.PlaceDto;
-import com.ssafy.crawling.repository.PlaceRDSRepository;
-import com.ssafy.crawling.repository.PlaceRepository;
+import com.ssafy.crawling.entity.PlaceRDSEntity;
+import com.ssafy.crawling.entity.PlaceDto;
+import com.ssafy.crawling.reposiroty.PlaceRDSRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

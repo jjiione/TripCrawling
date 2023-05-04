@@ -1,6 +1,6 @@
-package com.ssafy.crawling.model;
+package com.ssafy.crawling.entity;
 
-import com.ssafy.crawling.Entity.PlaceEntity;
+import com.ssafy.crawling.entity.PlaceEntity;
 import lombok.Getter;
 
 @Getter

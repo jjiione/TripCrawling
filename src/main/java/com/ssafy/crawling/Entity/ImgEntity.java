@@ -1,4 +1,4 @@
-package com.ssafy.crawling.model;
+package com.ssafy.crawling.Entity;
 
 import lombok.Data;
 
@@ -10,4 +10,5 @@ import javax.persistence.Id;
 public class ImgEntity {
     @Id
     private String id;
+
 }

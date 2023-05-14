@@ -1,5 +1,7 @@
 package com.ssafy.crawling.entity;
 
+import com.ssafy.crawling.dto.PlaceDto;
+
 import javax.persistence.*;
 
 @Entity(name="places")

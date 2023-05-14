@@ -4,11 +4,12 @@ import lombok.Getter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity(name = "cat_view")
+@Entity(name="categories")
 @Getter
-public class CatEntity {
+public class CategoriesEntity {
     @Id
-    private String cat3;
+    private String categoryId;
+    private String CategoryName;
+
 }

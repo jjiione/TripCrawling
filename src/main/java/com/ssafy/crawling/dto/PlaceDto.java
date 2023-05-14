@@ -1,4 +1,4 @@
-package com.ssafy.crawling.entity;
+package com.ssafy.crawling.dto;
 
 import com.ssafy.crawling.entity.PlaceEntity;
 import lombok.Getter;

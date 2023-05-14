@@ -1,8 +1,8 @@
 package com.ssafy.crawling.service;
 
-import com.ssafy.crawling.entity.CatDto;
-import com.ssafy.crawling.entity.CatEntity;
-import com.ssafy.crawling.reposiroty.CatRepository;
+import com.ssafy.crawling.dto.CatDto;
+import com.ssafy.crawling.entity.Cat3Entity;
+import com.ssafy.crawling.reposiroty.Cat1Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,19 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CatService {
-    private final CatRepository catRepository;
+public class Cat1Service {
+    private final Cat1Repository catRepository;
 
     @Autowired
-    public CatService(CatRepository catRepository) {
+    public Cat1Service(Cat1Repository catRepository) {
         this.catRepository = catRepository;
     }
 
     public List<CatDto> catList(){
         List<CatDto> catDtos = new ArrayList<>();
-        List<CatEntity> catEntities = catRepository.findAll();
-        for (CatEntity catEntity : catEntities) {
-            CatDto catDto = new CatDto(catEntity);
+        List<Cat3Entity> catEntities = catRepository.findAll();
+        for (Cat3Entity cat3Entity : catEntities) {
+            CatDto catDto = new CatDto(cat3Entity);
             catDtos.add(catDto);
         }
         return catDtos;

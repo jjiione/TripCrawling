@@ -2,7 +2,7 @@ package com.ssafy.crawling.service;
 
 import com.ssafy.crawling.reposiroty.PlaceRepository;
 import com.ssafy.crawling.entity.PlaceEntity;
-import com.ssafy.crawling.entity.PlaceDto;
+import com.ssafy.crawling.dto.PlaceDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;

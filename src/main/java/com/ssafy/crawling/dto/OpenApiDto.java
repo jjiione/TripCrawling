@@ -1,11 +1,9 @@
 package com.ssafy.crawling.dto;
 
-import com.ssafy.crawling.entity.Cat3Entity;
 import lombok.Data;
 
 @Data
-public class CatDto {
+public class OpenApiDto {
     private String code;
-
-
+    private String name;
 }

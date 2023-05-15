@@ -5,7 +5,7 @@ import lombok.Getter;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name = "cat2_view")
+@Entity(name = "cat_view2")
 @Getter
 public class Cat2Entity {
     @Id

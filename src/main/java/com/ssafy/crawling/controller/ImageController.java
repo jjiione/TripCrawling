@@ -28,12 +28,15 @@ public class ImageController {
     public void imageRegist(){
         List<Integer> list = placeRDSService.list();
 
-        for(int i=0; i<1000; i++){
+        for(int i=2900; i<3500; i++){
             int placeId = list.get(i);
             try {
                 imageOpenApiManager.fetch(placeId);
+                Thread.sleep(1000); //1초 대기
             } catch (ParseException e) {
 
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
 

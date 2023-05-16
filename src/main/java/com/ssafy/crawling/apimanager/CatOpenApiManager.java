@@ -24,7 +24,7 @@ public class CatOpenApiManager {
 
     private String [] contentTypeId = {"12", "14", "15", "25", "28", "32", "38", "39"};
 //    private String serviceKey = "z3vgw8Qjex43dubAYmTKS%2BYTCarK5JjMqfW6Da3cYCNTdA2FqJThjd15mnJY6lqmPFSCIehjR2Jex%2F71IGfBvw%3D%3D";
-    @Value("${key1}")
+    @Value("${key4}")
     private String serviceKey;
     @Autowired
     public CatOpenApiManager(CategoryService categoryService) {

@@ -1,6 +1,6 @@
 package com.ssafy.crawling.controller;
 
-import com.ssafy.crawling.apimanager.OpenApiManager;
+import com.ssafy.crawling.apimanager.CatOpenApiManager;
 import com.ssafy.crawling.dto.CatDto;
 import com.ssafy.crawling.service.Cat1Service;
 import com.ssafy.crawling.service.Cat3Service;
@@ -18,17 +18,17 @@ import java.util.List;
 @RequestMapping("/api")
 public class CatController {
 
-    private final OpenApiManager openApiManager;
+    private final CatOpenApiManager catOpenApiManager;
     private final Cat3Service cat3Service;
     private final Cat2Service cat2Service;
     private final Cat1Service cat1Service;
 
     @Autowired
-    public CatController(Cat3Service cat3Service, Cat2Service cat2Service, Cat1Service cat1Service, OpenApiManager openApiManager) {
+    public CatController(Cat3Service cat3Service, Cat2Service cat2Service, Cat1Service cat1Service, CatOpenApiManager catOpenApiManager) {
         this.cat3Service = cat3Service;
         this.cat2Service = cat2Service;
         this.cat1Service = cat1Service;
-        this.openApiManager = openApiManager;
+        this.catOpenApiManager = catOpenApiManager;
     }
 
     @GetMapping("/cat/cat3/list")
@@ -43,7 +43,7 @@ public class CatController {
             if(!cat.equals("") || !cat.equals(" ")){
                 try {
                     System.out.println("start");
-                    openApiManager.fetch(cat);
+                    catOpenApiManager.fetch(cat);
                 } catch (ParseException e) {
                     throw new RuntimeException(e);
                 }
@@ -68,7 +68,7 @@ public class CatController {
 
                 try {
                     System.out.println("start");
-                    openApiManager.fetch(cat2);
+                    catOpenApiManager.fetch(cat2);
                 } catch (ParseException e) {
                     throw new RuntimeException(e);
                 }
@@ -90,7 +90,7 @@ public class CatController {
             if(!cat.equals("") || !cat.equals(" ")){
                 try {
                     System.out.println("start");
-                    openApiManager.fetch(cat);
+                    catOpenApiManager.fetch(cat);
                 } catch (ParseException e) {
                     throw new RuntimeException(e);
                 }
@@ -107,7 +107,7 @@ public class CatController {
         System.out.println("cat0 정보 불러오기");
 
         try{
-            openApiManager.fetch("");
+            catOpenApiManager.fetch("");
         }catch (Exception e){
 
         }

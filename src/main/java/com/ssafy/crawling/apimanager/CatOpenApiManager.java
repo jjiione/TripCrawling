@@ -7,6 +7,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,26 +18,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class OpenApiManager {
+public class CatOpenApiManager {
 
     private CategoryService categoryService;
 
     private String [] contentTypeId = {"12", "14", "15", "25", "28", "32", "38", "39"};
-    private String serviceKey = "z3vgw8Qjex43dubAYmTKS%2BYTCarK5JjMqfW6Da3cYCNTdA2FqJThjd15mnJY6lqmPFSCIehjR2Jex%2F71IGfBvw%3D%3D";
-
+//    private String serviceKey = "z3vgw8Qjex43dubAYmTKS%2BYTCarK5JjMqfW6Da3cYCNTdA2FqJThjd15mnJY6lqmPFSCIehjR2Jex%2F71IGfBvw%3D%3D";
+    @Value("${key1}")
+    private String serviceKey;
     @Autowired
-    public OpenApiManager(CategoryService categoryService) {
+    public CatOpenApiManager(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
     private URI makeUrl(String cat1) throws URISyntaxException {
-//        String serviceKey = "ItKuQSxKLd76EK5vnch0CVWfvLJ%2BXlM6%2FKpDipWck41TMJhrL8pvFUdtSiDlJMydRvJtkC1%2Ftqd9WRVcNw3S1w%3D%3D";
-//        String serviceKey = "z3vgw8Qjex43dubAYmTKS+YTCarK5JjMqfW6Da3cYCNTdA2FqJThjd15mnJY6lqmPFSCIehjR2Jex/71IGfBvw==";
-//        try {
-//            serviceKey = URLEncoder.encode(serviceKey, "utf-8");
-//        } catch (UnsupportedEncodingException e) {
-//            throw new RuntimeException(e);
-//        }
+
        return new URI( "http://apis.data.go.kr/B551011/KorService1/categoryCode1?" +
                 "serviceKey=" + serviceKey + "&" +
                 "numOfRows=1000&" +
@@ -49,13 +45,7 @@ public class OpenApiManager {
     }
 
     private URI makeUrl0() throws URISyntaxException {
-//        String serviceKey = "ItKuQSxKLd76EK5vnch0CVWfvLJ%2BXlM6%2FKpDipWck41TMJhrL8pvFUdtSiDlJMydRvJtkC1%2Ftqd9WRVcNw3S1w%3D%3D";
-//        String serviceKey = "z3vgw8Qjex43dubAYmTKS+YTCarK5JjMqfW6Da3cYCNTdA2FqJThjd15mnJY6lqmPFSCIehjR2Jex/71IGfBvw==";
-//        try {
-//            serviceKey = URLEncoder.encode(serviceKey, "utf-8");
-//        } catch (UnsupportedEncodingException e) {
-//            throw new RuntimeException(e);
-//        }
+
         return new URI( "http://apis.data.go.kr/B551011/KorService1/categoryCode1?" +
                 "serviceKey=" + serviceKey + "&" +
                 "numOfRows=1000&" +
@@ -68,13 +58,7 @@ public class OpenApiManager {
 
 
     private URI makeUrlCat2(String cat2) throws URISyntaxException {
-//        String serviceKey = "ItKuQSxKLd76EK5vnch0CVWfvLJ%2BXlM6%2FKpDipWck41TMJhrL8pvFUdtSiDlJMydRvJtkC1%2Ftqd9WRVcNw3S1w%3D%3D";
-//        String serviceKey = "z3vgw8Qjex43dubAYmTKS+YTCarK5JjMqfW6Da3cYCNTdA2FqJThjd15mnJY6lqmPFSCIehjR2Jex/71IGfBvw==";
-//        try {
-//            serviceKey = URLEncoder.encode(serviceKey, "utf-8");
-//        } catch (UnsupportedEncodingException e) {
-//            throw new RuntimeException(e);
-//        }
+
         return new URI( "http://apis.data.go.kr/B551011/KorService1/categoryCode1?" +
                 "serviceKey=" + serviceKey + "&" +
                 "numOfRows=200&" +
@@ -89,12 +73,7 @@ public class OpenApiManager {
 
     private URI makeUrlCat3(String cat3) throws URISyntaxException {
 
-//        String serviceKey = "z3vgw8Qjex43dubAYmTKS+YTCarK5JjMqfW6Da3cYCNTdA2FqJThjd15mnJY6lqmPFSCIehjR2Jex/71IGfBvw==";
-//        try {
-//            serviceKey = URLEncoder.encode(serviceKey, "utf-8");
-//        } catch (UnsupportedEncodingException e) {
-//            throw new RuntimeException(e);
-//        }
+
         return new URI( "http://apis.data.go.kr/B551011/KorService1/categoryCode1?" +
                 "serviceKey=" + serviceKey + "&" +
                 "numOfRows=100&" +
@@ -162,8 +141,6 @@ public class OpenApiManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
 
     }
 

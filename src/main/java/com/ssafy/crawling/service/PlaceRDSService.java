@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,5 +28,14 @@ public class PlaceRDSService {
         }
 
 
+    }
+
+    public List<Integer> list(){
+        List<PlaceRDSEntity> placeRDSEntities =  placeRDSRepository.findAll();
+        List<Integer> list = new ArrayList<>();
+        for(PlaceRDSEntity entity : placeRDSEntities){
+            list.add(entity.getPlaceId());
+        }
+        return list;
     }
 }

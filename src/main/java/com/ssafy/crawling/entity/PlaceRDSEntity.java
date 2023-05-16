@@ -28,4 +28,8 @@ public class PlaceRDSEntity {
         this.placeType = placeDto.getPlaceType();
     }
 
+    public int getPlaceId(){
+        return placeId;
+    }
+
 }

@@ -1,14 +1,15 @@
 package com.ssafy.crawling.controller;
 
+import com.ssafy.crawling.apimanager.PlaceDetailOpenApiManager;
+import com.ssafy.crawling.entity.PlaceContentIdType;
+import com.ssafy.crawling.service.PlaceContentIdTypeService;
 import com.ssafy.crawling.service.PlaceRDSService;
 import com.ssafy.crawling.service.PlaceService;
 import com.ssafy.crawling.dto.PlaceDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,13 +17,18 @@ import java.util.List;
 public class PlaceController {
     private final PlaceService placeService;
     private final PlaceRDSService placeRDSService;
+    private final PlaceContentIdTypeService placeContentIdTypeService;
+    private final PlaceDetailOpenApiManager placeDetailOpenApiManager;
+
     private List<PlaceDto> placeDtoList = new ArrayList<>();
 
 
     @Autowired
-    public PlaceController(PlaceService placeService, PlaceRDSService placeRDSService){
+    public PlaceController(PlaceService placeService, PlaceRDSService placeRDSService, PlaceContentIdTypeService placeContentIdTypeService, PlaceDetailOpenApiManager placeDetailOpenApiManager){
         this.placeService = placeService;
         this.placeRDSService = placeRDSService;
+        this.placeContentIdTypeService = placeContentIdTypeService;
+        this.placeDetailOpenApiManager = placeDetailOpenApiManager;
     }
 
     @GetMapping("/place/list")
@@ -36,11 +42,48 @@ public class PlaceController {
     }
 
 
+    // place detail 가져오는 메서드
+    @GetMapping("/place/{content_type_id}/detail")
+    public List<PlaceContentIdType> placeDetail(@PathVariable int content_type_id){
+        List<PlaceContentIdType> list = null;
+        if(content_type_id == 12){
+            list = placeContentIdTypeService.select12();
+        }else if(content_type_id == 14){
+            list = placeContentIdTypeService.select14();
+        }else if(content_type_id == 15){
+            list = placeContentIdTypeService.select15();
+        }else if(content_type_id == 25){
+            list = placeContentIdTypeService.select25();
+        }else if(content_type_id == 28){
+            list = placeContentIdTypeService.select28();
+        }else if(content_type_id == 32){
+            list = placeContentIdTypeService.select32();
+        }else if(content_type_id == 38){
+            list = placeContentIdTypeService.select38();
+        }else if(content_type_id == 39){
+            list = placeContentIdTypeService.select39();
+        }
 
-//    @PostMapping("place/get/find")
-//    public void test(@RequestParam("param"){
-//        System.out.println("test");
-//    }
+        for(int i=10900; i<11729; i++){
+            try {
+                placeDetailOpenApiManager.fetch(list.get(i).getContentId(), list.get(i).getContentTypeId());
+                Thread.sleep(1500); //1.5초 대기
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
+
+
+
+
+        return list;
+    }
+
+
 
 
 }

@@ -1,5 +1,8 @@
 package com.ssafy.crawling.dto.placedetail;
 
+import lombok.Data;
+
+@Data
 public class ContentType39_RestaurantDto {
     String contentid;
     String contenttypeid;

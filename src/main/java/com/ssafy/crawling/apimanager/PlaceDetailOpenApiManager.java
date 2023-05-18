@@ -1,11 +1,11 @@
 package com.ssafy.crawling.apimanager;
 
-import com.ssafy.crawling.dto.ImageDto;
 import com.ssafy.crawling.dto.placedetail.ContentType12_AttractionDto;
-import com.ssafy.crawling.entity.PlaceImagesEntity;
+import com.ssafy.crawling.dto.placedetail.ContentType39_RestaurantDto;
 import com.ssafy.crawling.entity.placedetail.AttractionContentType12Entity;
-import com.ssafy.crawling.service.ImageService;
+import com.ssafy.crawling.entity.placedetail.RestaurantContentType39Entity;
 import com.ssafy.crawling.service.placedetail.ContentType12Service;
+import com.ssafy.crawling.service.placedetail.ContentType39Service;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -24,13 +24,15 @@ import java.util.List;
 public class PlaceDetailOpenApiManager {
 //    private ImageService imageService;
 
-    @Value("${key5}")
+    @Value("${key1}")
     private String serviceKey;
     private final ContentType12Service contentType12Service;
+    private final ContentType39Service contentType39Service;
 
     @Autowired
-    public PlaceDetailOpenApiManager(ContentType12Service contentType12Service) {
+    public PlaceDetailOpenApiManager(ContentType12Service contentType12Service, ContentType39Service contentType39Service) {
         this.contentType12Service = contentType12Service;
+        this.contentType39Service = contentType39Service;
     }
 
     private URI makeUrl(int contentId, int contentTypeId) throws URISyntaxException {
@@ -89,6 +91,21 @@ public class PlaceDetailOpenApiManager {
                     contentType12Service.save(entity);
 
                 }
+            }else if(contentTypeId == 39){
+                List<ContentType39_RestaurantDto> result = new ArrayList<>();
+
+
+                for (Object o : jsonItemList) {
+                    JSONObject item = (JSONObject) o;
+                    result.add(makeType39Dto(item));
+                }
+
+                for(ContentType39_RestaurantDto dto : result){
+                    RestaurantContentType39Entity entity = new RestaurantContentType39Entity();
+                    entity.post(dto);
+                    contentType39Service.save(entity);
+
+                }
             }
 
 
@@ -98,6 +115,30 @@ public class PlaceDetailOpenApiManager {
             e.printStackTrace();
         }
 
+    }
+
+    private ContentType39_RestaurantDto makeType39Dto(JSONObject item) {
+        ContentType39_RestaurantDto dto = new ContentType39_RestaurantDto();
+        dto.setContentid((String) item.get("contentid"));
+        dto.setContenttypeid((String) item.get("contenttypeid"));
+        dto.setSeat((String) item.get("seat"));
+        dto.setKidsfacility((String) item.get("kidsfacility"));
+        dto.setFirstmenu((String) item.get("firstmenu"));
+        dto.setTreatmenu((String) item.get("treatmenu"));
+        dto.setSmoking((String) item.get("smoking"));
+        dto.setPacking((String) item.get("packing"));
+        dto.setInfocenterfood((String) item.get("infocenterfood"));
+        dto.setScalefood((String) item.get("scalefood"));
+        dto.setParkingfood((String) item.get("parkingfood"));
+        dto.setOpendatefood((String) item.get("opendatefood"));
+        dto.setOpentimefood((String) item.get("opentimefood"));
+        dto.setRestdatefood((String) item.get("restdatefood"));
+        dto.setDiscountinfofood((String) item.get("discountinfofood"));
+        dto.setChkcreditcardfood((String) item.get("chkcreditcardfood"));
+        dto.setReservationfood((String) item.get("reservationfood"));
+        dto.setLcnsno((String) item.get("lcnsno"));
+
+        return dto;
     }
 
     private ContentType12_AttractionDto makeType12Dto(JSONObject item) {

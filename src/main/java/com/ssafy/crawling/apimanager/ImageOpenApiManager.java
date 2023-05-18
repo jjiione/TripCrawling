@@ -24,7 +24,7 @@ public class ImageOpenApiManager {
 
     private ImageService imageService;
 
-    @Value("${key9}")
+    @Value("${key8}")
     private String serviceKey;
 
     @Autowired

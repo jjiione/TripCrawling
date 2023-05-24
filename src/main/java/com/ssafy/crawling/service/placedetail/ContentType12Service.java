@@ -17,7 +17,6 @@ public class ContentType12Service {
 
     public void save(AttractionContentType12Entity entity){
         contentType12Repository.save(entity);
-
     }
 
 

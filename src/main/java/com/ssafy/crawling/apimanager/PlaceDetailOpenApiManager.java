@@ -1,11 +1,8 @@
 package com.ssafy.crawling.apimanager;
 
-import com.ssafy.crawling.dto.placedetail.ContentType12_AttractionDto;
-import com.ssafy.crawling.dto.placedetail.ContentType39_RestaurantDto;
-import com.ssafy.crawling.entity.placedetail.AttractionContentType12Entity;
-import com.ssafy.crawling.entity.placedetail.RestaurantContentType39Entity;
-import com.ssafy.crawling.service.placedetail.ContentType12Service;
-import com.ssafy.crawling.service.placedetail.ContentType39Service;
+import com.ssafy.crawling.dto.placedetail.*;
+import com.ssafy.crawling.entity.placedetail.*;
+import com.ssafy.crawling.service.placedetail.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -24,15 +21,26 @@ import java.util.List;
 public class PlaceDetailOpenApiManager {
 //    private ImageService imageService;
 
-    @Value("${key1}")
+    @Value("${key2}")
     private String serviceKey;
     private final ContentType12Service contentType12Service;
     private final ContentType39Service contentType39Service;
+    private final ContentType14Service contentType14Service;
+    private final ContentType32Service contentType32Service;
+    private final ContentType38Service contentType38Service;
 
     @Autowired
-    public PlaceDetailOpenApiManager(ContentType12Service contentType12Service, ContentType39Service contentType39Service) {
+    public PlaceDetailOpenApiManager(ContentType12Service contentType12Service,
+                                     ContentType39Service contentType39Service,
+                                     ContentType14Service contentType14Service,
+                                     ContentType32Service contentType32Service,
+                                     ContentType38Service contentType38Service) {
         this.contentType12Service = contentType12Service;
         this.contentType39Service = contentType39Service;
+        this.contentType14Service = contentType14Service;
+        this.contentType32Service = contentType32Service;
+        this.contentType38Service = contentType38Service;
+
     }
 
     private URI makeUrl(int contentId, int contentTypeId) throws URISyntaxException {
@@ -106,6 +114,59 @@ public class PlaceDetailOpenApiManager {
                     contentType39Service.save(entity);
 
                 }
+
+            }else if(contentTypeId == 14){
+                List<ContentType14_CultureInfraDto> result = new ArrayList<>();
+
+
+                for (Object o : jsonItemList) {
+                    JSONObject item = (JSONObject) o;
+                    result.add(makeType14Dto(item));
+                }
+
+                for(ContentType14_CultureInfraDto dto : result){
+                    CultureInfraContentType14Entity entity = new CultureInfraContentType14Entity();
+                    entity.post(dto);
+                    contentType14Service.save(entity);
+
+                }
+
+            }
+
+            else if(contentTypeId == 32){
+                List<ContentType32_AccomodationDto> result = new ArrayList<>();
+
+
+                for (Object o : jsonItemList) {
+                    JSONObject item = (JSONObject) o;
+                    result.add(makeType32Dto(item));
+                }
+
+                for(ContentType32_AccomodationDto dto : result){
+                    AccomodationContentType32Entity entity = new AccomodationContentType32Entity();
+                    entity.post(dto);
+                    contentType32Service.save(entity);
+
+                }
+
+            }
+
+            else if(contentTypeId == 38){
+                List<ContentType38_ShoppingDto> result = new ArrayList<>();
+
+
+                for (Object o : jsonItemList) {
+                    JSONObject item = (JSONObject) o;
+                    result.add(makeType38Dto(item));
+                }
+
+                for(ContentType38_ShoppingDto dto : result){
+                    ShoppingContentType38Entity entity = new ShoppingContentType38Entity();
+                    entity.post(dto);
+                    contentType38Service.save(entity);
+
+                }
+
             }
 
 
@@ -163,4 +224,87 @@ public class PlaceDetailOpenApiManager {
         return dto;
     }
 
+    private ContentType14_CultureInfraDto makeType14Dto(JSONObject item) {
+        ContentType14_CultureInfraDto dto = new ContentType14_CultureInfraDto();
+        dto.setContentid((String) item.get("contentid"));
+        dto.setContenttypeid((String) item.get("contenttypeid"));
+        dto.setScale((String) item.get("scale"));
+        dto.setUsefee((String) item.get("usefee"));
+        dto.setDiscountinfo((String) item.get("discountinfo"));
+        dto.setSpendtime((String) item.get("spendtime"));
+        dto.setParkingfee((String) item.get("parkingfee"));
+        dto.setInfocenterculture((String) item.get("infocenterculture"));
+        dto.setAccomcountculture((String) item.get("cccomcountculture"));
+        dto.setUsetimeculture((String) item.get("usetimeculture"));
+        dto.setRestdateculture((String) item.get("restdateculture"));
+        dto.setParkingculture((String) item.get("parkingculture"));
+        dto.setChkbabycarriageculture((String) item.get("chkbabycarriageculture"));
+        dto.setChkpetculture((String) item.get("chkpetculture"));
+        dto.setChkcreditcardculture((String) item.get("chkcreditcardculture"));
+        return dto;
+
+    }
+
+    private ContentType32_AccomodationDto makeType32Dto(JSONObject item) {
+        ContentType32_AccomodationDto dto = new ContentType32_AccomodationDto();
+        dto.setContentid((String) item.get("contentid"));
+        dto.setContenttypeid((String) item.get("contenttypeid"));
+        dto.setGoodstay((String) item.get("goodstay"));
+        dto.setBenikia((String) item.get("benikia"));
+        dto.setHanok((String) item.get("hanok"));
+        dto.setRoomcount((String) item.get("roomcount"));
+        dto.setRoomtype((String) item.get("roomtype"));
+        dto.setRefundregulation((String) item.get("refundregulation"));
+        dto.setCheckintime((String) item.get("checkintime"));
+        dto.setCheckouttime((String) item.get("checkouttime"));
+        dto.setChkcooking((String) item.get("chkcooking"));
+        dto.setSeminar((String) item.get("seminar"));
+        dto.setSports((String) item.get("sports"));
+        dto.setSauna((String) item.get("sauna"));
+        dto.setBeauty((String) item.get("beauty"));
+        dto.setBeverage((String) item.get("beverage"));
+        dto.setKaraoke((String) item.get("karaoke"));
+        dto.setBarbecue((String) item.get("barbecue"));
+        dto.setCampfire((String) item.get("campfire"));
+        dto.setBicycle((String) item.get("bicycle"));
+        dto.setFitness((String) item.get("fitness"));
+        dto.setPublicpc((String) item.get("publicpc"));
+        dto.setPublicbath((String) item.get("publicbath"));
+        dto.setSubfacility((String) item.get("subfacility"));
+        dto.setFoodplace((String) item.get("foodplace"));
+        dto.setReservationurl((String) item.get("reservationurl"));
+        dto.setPickup((String) item.get("pickup"));
+        dto.setInfocenterlodging((String) item.get("infocenterlodging"));
+        dto.setParkinglodging((String) item.get("parkinglodging"));
+        dto.setReservationlodging((String) item.get("reservationlodging"));
+        dto.setScalelodging((String) item.get("scalelodging"));
+        dto.setAccomcountlodging((String) item.get("accomcountlodging"));
+        return dto;
+    }
+
+    private ContentType38_ShoppingDto makeType38Dto(JSONObject item) {
+        ContentType38_ShoppingDto dto = new ContentType38_ShoppingDto();
+        dto.setContentid((String) item.get("contentid"));
+        dto.setContenttypeid((String) item.get("contenttypeid"));
+        dto.setSaleitem((String) item.get("saleitem"));
+        dto.setSaleitemcost((String) item.get("saleitemcost"));
+        dto.setFairday((String) item.get("fairday"));
+        dto.setOpendateshopping((String) item.get("opendateshopping"));
+        dto.setShopguide((String) item.get("shopguide"));
+        dto.setCulturecenter((String) item.get("culturecenter"));
+        dto.setRestroom((String) item.get("restroom"));
+        dto.setInfocentershopping((String) item.get("infocentershopping"));
+        dto.setScaleshopping((String) item.get("scaleshopping"));
+        dto.setRestdateshopping((String) item.get("restdateshopping"));
+        dto.setParkingshopping((String) item.get("parkingshopping"));
+        dto.setChkbabycarriageshopping((String) item.get("chkbabycarriageshopping"));
+        dto.setChkpetshopping((String) item.get("chkpetshopping"));
+        dto.setChkcreditcardshopping((String) item.get("chkcreditcardshopping"));
+        dto.setOpentime((String) item.get("opentime"));
+        return dto;
+    }
+
+
 }
+
+

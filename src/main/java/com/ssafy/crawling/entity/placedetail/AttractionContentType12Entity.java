@@ -1,10 +1,14 @@
 package com.ssafy.crawling.entity.placedetail;
 
 import com.ssafy.crawling.dto.placedetail.ContentType12_AttractionDto;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.criteria.CriteriaBuilder;
+
 
 @Entity(name = "attraction_detail_content_type_12")
 public class AttractionContentType12Entity {

@@ -21,7 +21,7 @@ import java.util.List;
 public class PlaceDetailOpenApiManager {
 //    private ImageService imageService;
 
-    @Value("${key2}")
+    @Value("${key6}")
     private String serviceKey;
     private final ContentType12Service contentType12Service;
     private final ContentType39Service contentType39Service;

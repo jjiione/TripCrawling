@@ -67,7 +67,7 @@ public class PlaceController {
         for(int i=0; i<1000; i++){
             try {
                 placeDetailOpenApiManager.fetch(list.get(i).getContentId(), list.get(i).getContentTypeId());
-                Thread.sleep(1500); //1.5초 대기
+                Thread.sleep(1300); //1.5초 대기
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             } catch (InterruptedException e) {
